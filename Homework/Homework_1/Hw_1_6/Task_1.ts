@@ -13,4 +13,4 @@ console.log(s3.length);
 
 const strings:string[] = [s1, s2, s3];
 for (const s of strings) {
-    console.log(s.length)};
+    console.log(s.length)}
