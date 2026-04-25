@@ -61,12 +61,6 @@ class Deck {
     });
     }
 }
-const deck = new Deck();
-const result = deck.findCard({
-    cardValue: Value.Nine,
-    cardSuit: Suit.Heart,
-});
-console.log(result);
 
 class GroupDeck {
     suitClubs:Card[] = [];
@@ -82,7 +76,8 @@ class GroupDeck {
     };
 
     constructor(deck: Card[]) {
-        this.group(deck)}
+        this.group(deck)
+    }
 
     private group(deck: Card[]) {
         for (const card of deck) {
@@ -92,5 +87,10 @@ class GroupDeck {
     }
 }
 
+const deck = new Deck();
+const result = deck.findCard({
+    cardValue: Value.Nine,
+    cardSuit: Suit.Heart,
+});
 const grouped = new GroupDeck(deck.cards);
-console.log(grouped);
+console.log(grouped, result);
