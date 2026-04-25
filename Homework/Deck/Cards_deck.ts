@@ -16,6 +16,7 @@ enum Value {
     King,
     Ace
 }
+
 enum Color {
     red,
     black,
@@ -50,7 +51,6 @@ class Deck {
         }
     }
 
-
     findCard(filter: Partial<Card>) {
         return this.cards.find(card => {
             const keys = Object.keys(filter);
@@ -59,7 +59,7 @@ class Deck {
                 return card[key as keyof Card] === filter[key as keyof Card];
         });
     });
-}
+    }
 }
 const deck = new Deck();
 const result = deck.findCard({
@@ -67,7 +67,6 @@ const result = deck.findCard({
     cardSuit: Suit.Heart,
 });
 console.log(result);
-
 
 class GroupDeck {
     suitClubs:Card[] = [];
