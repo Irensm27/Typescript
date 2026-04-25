@@ -1,31 +1,35 @@
 enum Suit {
-    Clubs = 'clubs',
-    Heart = 'heart',
-    Spade = 'spade',
-    Diamond = 'diamond'
+    Clubs,
+    Heart,
+    Spade,
+    Diamond
 }
 
 enum Value {
-    Six = '6',
-    Seven = '7',
-    Eight = '8',
-    Nine = '9',
-    Ten = '10',
-    Jack = 'jack',
-    Queen = 'queen',
-    King = 'king',
-    Ace = 'ace'
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King,
+    Ace
+}
+enum Color {
+    red,
+    black,
 }
 
 class Card {
     cardSuit: Suit;
     cardValue: Value;
-    color: string;
+    color: Color;
 
-    constructor(cardSuit: Suit, cardValue: Value) {
+    constructor(cardSuit: Suit, value: Value) {
         this.cardSuit = cardSuit;
-        this.cardValue = cardValue;
-        this.color = (cardSuit === Suit.Diamond || cardSuit === Suit.Heart) ? 'red' : 'black';
+        this.cardValue = value;
+        this.color = (cardSuit === Suit.Diamond || cardSuit === Suit.Heart) ? Color.red : Color.black;
     }
 }
 
@@ -57,7 +61,8 @@ class Deck {
     });
 }
 }
-const result = new Deck().findCard({
+const deck = new Deck();
+const result = deck.findCard({
     cardValue: Value.Nine,
     cardSuit: Suit.Heart,
 });
@@ -77,16 +82,16 @@ class GroupDeck {
         [Suit.Diamond]: 'suitDiamond'
     };
 
-        constructor(deck: Card[]) {
+    constructor(deck: Card[]) {
         this.group(deck)}
 
-            private group(deck: Card[]) {
-                for (const card of deck) {
-                    const key = this.suitMap[card.cardSuit];
-                    this[key].push(card);
-                }
-            }
+    private group(deck: Card[]) {
+        for (const card of deck) {
+            const key = this.suitMap[card.cardSuit];
+            this[key].push(card);
+        }
+    }
 }
-const deck = new Deck();
+
 const grouped = new GroupDeck(deck.cards);
 console.log(grouped);
