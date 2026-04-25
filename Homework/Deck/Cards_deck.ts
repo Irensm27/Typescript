@@ -18,8 +18,8 @@ enum Value {
 }
 
 enum Color {
-    red,
-    black,
+    Red,
+    Black
 }
 
 class Card {
@@ -30,7 +30,11 @@ class Card {
     constructor(cardSuit: Suit, value: Value) {
         this.cardSuit = cardSuit;
         this.cardValue = value;
-        this.color = (cardSuit === Suit.Diamond || cardSuit === Suit.Heart) ? Color.red : Color.black;
+
+        this.color =
+            (cardSuit === Suit.Diamond || cardSuit === Suit.Heart)
+                ? Color.Red
+                : Color.Black;
     }
 }
 
@@ -41,32 +45,38 @@ class Deck {
         this.generateDeck();
     }
 
-    private generateDeck() {
+    private generateDeck(): void {
         const suits = Object.values(Suit);
         const values = Object.values(Value);
 
         for (const suit of suits) {
             for (const value of values) {
-                this.cards.push(new Card (suit as Suit, value as Value));}
+                this.cards.push(
+                    new Card(suit as Suit, value as Value)
+                );
+            }
         }
     }
 
-    findCard(filter: Partial<Card>) {
+    findCard(filter: Partial<Card>): Card | undefined {
         return this.cards.find(card => {
             const keys = Object.keys(filter);
 
             return keys.every(key => {
-                return card[key as keyof Card] === filter[key as keyof Card];
+                return (
+                    card[key as keyof Card] ===
+                    filter[key as keyof Card]
+                );
+            });
         });
-    });
     }
 }
 
 class GroupDeck {
-    suitClubs:Card[] = [];
-    suitHeart:Card[] = [];
-    suitSpade:Card[] = [];
-    suitDiamond:Card[] =[];
+    suitClubs: Card[] = [];
+    suitHeart: Card[] = [];
+    suitSpade: Card[] = [];
+    suitDiamond: Card[] = [];
 
     private suitMap: Record<Suit, keyof GroupDeck> = {
         [Suit.Clubs]: 'suitClubs',
@@ -76,10 +86,10 @@ class GroupDeck {
     };
 
     constructor(deck: Card[]) {
-        this.group(deck)
+        this.group(deck);
     }
 
-    private group(deck: Card[]) {
+    private group(deck: Card[]): void {
         for (const card of deck) {
             const key = this.suitMap[card.cardSuit];
             this[key].push(card);
@@ -88,9 +98,12 @@ class GroupDeck {
 }
 
 const deck = new Deck();
+
 const result = deck.findCard({
     cardValue: Value.Nine,
-    cardSuit: Suit.Heart,
+    cardSuit: Suit.Heart
 });
+
 const grouped = new GroupDeck(deck.cards);
+
 console.log(grouped, result);
