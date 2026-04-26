@@ -1,14 +1,24 @@
-//– Створити функцію конструктор для об’єктів User з полями id, name, surname , email, phone
-// створити пустий масив, наповнити його 10 об’єктами new User(….)
+//– Взяти масив з  User[] з попереднього завдання, та відфільтрувати, залишивши тільки об’єкти з парними id (filter)
 
 class User{
-constructor ( private id:number,  private name:string,  private surname:string ,  private email:string,  private phone:string){
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.email = email;
-    this.phone = phone;
-}}
+        constructor(private id: number, private name: string, private surname: string, private email: string, private phone: string
+    ) {}
+    getId(){
+        return this.id
+    }
+    getName(){
+        return this.name;
+    }
+    getSurname(){
+        return this.surname;
+    }
+    getEmail(){
+        return this.email;
+    }
+    getPhone(){
+        return this.phone;
+    }
+}
 
 let arrUser:User[] = [
     new User(1, 'Ira', 'Ivanets', 'Ivanets@gm.com', '+38014'),
@@ -23,4 +33,4 @@ let arrUser:User[] = [
     new User(10, 'Kostya', 'zxcvbg', 'Ivanets@gm.com', '+3801434')
 ]
 
-console.log(arrUser);
+console.log(arrUser.filter(user => user.getId() % 2 === 0));

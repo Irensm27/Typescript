@@ -13,11 +13,7 @@ class User {
         this.surname = surname;
         this.email = email;
         this.phone = phone;
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.phone = phone;
+
     }
 }
 let arrUser = [
