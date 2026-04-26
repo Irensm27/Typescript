@@ -1,12 +1,12 @@
 //– створити конструктор для об’єктів Client з полями id, name, surname , email, phone, order (поле є масивом зі списком товарів)
 // створити пустий масив, наповнити його 10 об’єктами Client
 class Client {
-    id;
-    name;
-    surname;
-    email;
-    phone;
-    order;
+    id:number;
+    name:string;
+    surname:string;
+    email:string;
+    phone:string;
+    order:Product[];
 
     constructor(id:number, name:string, surname:string , email:string, phone:string, order:Product[]) {
     this.id = id;
